@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать пост</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="logo">B</div>
+        <a href="{% url 'home' %}" class="site-name">Блогикум</a>
+        <nav>
+            <a href="{% url 'about_project' %}">О проекте</a>
+            <a href="{% url 'rules' %}">Правила</a>
+            <a href="{% url 'authentication' %}" id="loginLink" class="nav-link">Войти</a>
+            <a href="{% url 'registration' %}" id="registerLink" class="nav-link register">Регистрация</a>
+        </nav>
+    </header>
+
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <button type="submit">Опубликовать</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
