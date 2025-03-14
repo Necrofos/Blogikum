@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView, FormView
 from .models import Post
 from .forms import PostForm
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -44,7 +45,7 @@ class AddPostPage(FormView):
 def rules(request):
     return HttpResponse('Правила проекта')
 
-
+@login_required
 def add_post(request):
     if(request.method == 'GET'):
         form = PostForm()
