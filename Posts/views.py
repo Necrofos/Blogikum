@@ -1,12 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from .models import Post
 from .forms import PostForm
 
-
-def test(request):
-    return render(request, 'home.html')
 
 
 
@@ -39,6 +36,10 @@ def about(request):
     return HttpResponse('О проекте')
 
 
+class AddPostPage(FormView):
+    pass
+
+
 #TODO: добавить нормальные функции для описания правил
 def rules(request):
     return HttpResponse('Правила проекта')
@@ -60,4 +61,4 @@ def add_post(request):
 
 
 
-
+#TODO: добавить кнопку лайка
