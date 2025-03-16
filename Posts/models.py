@@ -6,8 +6,6 @@ from django.contrib.auth import get_user_model
 
 
 class Post(models.Model):
-
-    #TODO: ДОбавить автора поста с помощью связи ManyToOne
     title = models.CharField(max_length = 50,
                              verbose_name='Заголовок',
                              )
@@ -22,6 +20,19 @@ class Post(models.Model):
                                verbose_name = 'Автор',
                                blank= False,
                                related_name='posts')
+    tags = models.ManyToManyField('TagPost',
+                                  blank = True,
+                                  related_name = 'tags',
+                                  verbose_name = 'Теги')
+    
 
     #TODO: добавить время обновления поста и картинку поста
+
+
+class TagPost(models.Model):
+    tag = models.CharField(max_length = 100)
+    slug = models.SlugField(max_length = 100, unique = True)
+
+    def __str__(self):
+        return self.tag
  

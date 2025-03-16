@@ -1,0 +1,246 @@
+/* Общие стили для сайта */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #add8e6;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    background-color: #3d3d3d;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.site-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+    margin-left: 705px;
+    position: relative;
+    top: -20px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+}
+
+nav a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-btn, .register-btn {
+    padding: 8px 16px;
+    border: 1px solid #007bff;
+    background: white;
+    color: #007bff;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.register-btn {
+    background: #007bff;
+    color: white;
+}
+
+.posts-container {
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.posts-container h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.post {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post h3 {
+    margin: 0;
+    color: #007bff;
+}
+
+.post p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.post strong {
+    color: #333;
+}
+
+.form-container {
+    width: 50%;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container table {
+    width: 100%;
+}
+
+.form-container input[type="text"],
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-container textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+.registration-container {
+    width: 50%;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.registration-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.registration-container input[type="text"],
+.registration-container input[type="password"],
+.registration-container textarea,
+.registration-container select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.registration-container input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+}
+
+.registration-container input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.registration-container .error {
+    color: red;
+    font-size: 14px;
+}
+
+/* Стиль для страницы "О проекте" */
+
+/* Обертка для контента страницы */
+.page-about {
+    width: 80%;
+    margin: 40px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок страницы "О проекте" */
+.page-about h1 {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Подзаголовки на странице "О проекте" */
+.page-about h2 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Стили для параграфов на странице "О проекте" */
+.page-about p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Стили для списка в разделе целей */
+.page-about ul {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+.page-about ul li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Стиль для текста выделенных элементов */
+.page-about strong {
+    color: #333;
+}
+
+/* Добавление отступов для контейнера с основным контентом */
+.page-about .container {
+    margin-top: 0;
+    margin-bottom: 0;
+}

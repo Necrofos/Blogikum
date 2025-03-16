@@ -4,41 +4,25 @@ from django.views.generic import TemplateView, FormView
 from .models import Post
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
+
+
+class HomePage(ListView):
+    model = Post
+    context_object_name = 'posts'
+    template_name = 'Posts/home.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
 
 
 
 
-#TODO: сделать базовый шаблон, от которого будут наследоваться все шаблоны
-class HomePage(TemplateView):
-
-    #TODO: добавить отображение меню через список меню(а лучше через миксин)
-    template_name = 'home.html'
+class About(TemplateView):
+    template_name = 'Posts/about_project.html'
 
 
-def home(request):
-    posts = Post.objects.all()
-    data = {'posts': posts}
-    return render(request, 'home.html', context = data)
-
-
-#TODO: добавить авторизацию, перенести ее в приложение Users
-def authorization(request):
-    
-    return HttpResponse("Авторизация")
-
-
-#TODO: добавить нормальные функции для регистрации, перенести регистрацию в приложение Users
-def registration(reqeuest):
-    return HttpResponse("Регистрация")
-
-
-#TODO: добавить нормальные функции для описания платформы
-def about(request):
-    return HttpResponse('О проекте')
-
-
-class AddPostPage(FormView):
-    pass
 
 
 #TODO: добавить нормальные функции для описания правил
@@ -49,16 +33,20 @@ def rules(request):
 def add_post(request):
     if(request.method == 'GET'):
         form = PostForm()
-        return render(request, 'add_post.html', context = {'form' : form})
+        return render(request, 'Posts/add_post.html', context = {'form' : form})
     elif (request.method == 'POST'):
         form = PostForm(request.POST)
         if(form.is_valid()):
-            new_post = Post.objects.create(**form.cleaned_data)
+            cleaned_data = form.cleaned_data
+            cleaned_data['author'] = request.user
+            new_post = Post.objects.create(title = cleaned_data['title'],
+                                           text = cleaned_data['text'],
+                                           likes = 0,
+                                           author = cleaned_data['author']
+                                           )
+            new_post.tags.add(cleaned_data['tag'])
             return redirect('home')
     return HttpResponse('kajdlfjdas;f')
-
-
-#TODO: добавить кнопку добавления поста, которая доступна только авторизованным пользователям
 
 
 

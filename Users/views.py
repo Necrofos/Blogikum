@@ -1,9 +1,12 @@
 from django.shortcuts import render, reverse, HttpResponseRedirect, HttpResponse
-from .forms import LoginUserForm, RegisterUserForm
+from .forms import LoginUserForm, RegisterUserForm, ProfileUserForm
 from django.contrib.auth import authenticate, login
+from django.views.generic import UpdateView, TemplateView
+from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
+from django.contrib.auth.views import LogoutView
 
 
-# Create your views here.
 
 
 def login_user(request):
@@ -18,10 +21,8 @@ def login_user(request):
                 return HttpResponseRedirect(reverse('home'))
     else:
         form = LoginUserForm()
-    return render(request, 'login.html', context = {'form': form})
+    return render(request, 'Users/login.html', context = {'form': form})
 
-
-#TODO: добавить личный кабинет пользователя, добавить фукнцию выхода из системы
 
 def register_user(request):
     if(request.method == 'POST'):
@@ -29,14 +30,32 @@ def register_user(request):
         user = form.save(commit=False)
         user.set_password(form.cleaned_data['password2'])
         user.save()
-        return render(request, 'register_done.html')
+        return render(request, 'Users/register_done.html')
     else:
         form = RegisterUserForm()
-    return render(request, 'register.html', context = {'form': form})
+    return render(request, 'Users/register.html', context = {'form': form})
 
+
+
+
+class RegisterDone(TemplateView):
+    template_name = 'Users/register.html'
 
 def register_done(request):
-    return render(request, 'register_done.html')
+    return render(request, 'Users/register_done.html')
 
 
 
+class UserProfile(UpdateView):
+    model = get_user_model()
+    template_name = 'Users/user_account.html'
+    form_class = ProfileUserForm 
+
+
+    def get_object(self, queryset = None):
+        return self.request.user
+    
+    def get_success_url(self):
+        return reverse_lazy('profile')
+    
+    

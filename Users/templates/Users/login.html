@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block authentication %}
+<div class="registration-container">
+    <h1>Войти</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_table }} 
+        <hr>
+        <p><a href="{% url 'social:begin' 'github' %}">Login With GitHub</a></p>
+        <button type="submit">Войти</button>
+    </form>
+</div>
+{% endblock %}

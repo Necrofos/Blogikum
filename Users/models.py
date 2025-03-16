@@ -5,7 +5,8 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     photo = models.ImageField(blank=True, 
                               null = True, 
-                              verbose_name = 'Аватарка'
+                              verbose_name = 'Аватарка',
+                              
                               )
     date_of_birth = models.DateTimeField(blank = True,
                                          null = True, 

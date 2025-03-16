@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block registration %}
+<div class="registration-container">
+    <h1>Регистрация</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_table }}  <!-- Используем form.as_table для отображения формы в виде таблицы -->
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</div>
+{% endblock %}

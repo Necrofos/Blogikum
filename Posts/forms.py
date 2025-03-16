@@ -1,17 +1,13 @@
 from django import forms
-from .models import Post
+from .models import Post, TagPost
+
 
 class PostForm(forms.ModelForm):
-    categories =[
-        ('Спорт', 'Спорт'),
-        ('Политика', 'Политика'),
-        ('О себе', 'О себе'),
-    ]
-    category = forms.MultipleChoiceField(label = 'Категории', choices= categories)
+    tag = forms.ModelChoiceField(queryset= TagPost.objects.all(), label = 'Теги', empty_label='Теги не выбраны')
 
     class Meta:
         model = Post
-        fields = ['title', 'text', 'category']
+        fields = ['title', 'text', 'tag']
         widgets = {
             'title': forms.TextInput(),
             'text': forms.Textarea(),

@@ -16,8 +16,8 @@ class LoginUserForm(forms.Form):
 
 class RegisterUserForm(forms.ModelForm):
     username = forms.CharField(label = 'Логин')
-    password1 = forms.CharField(label = 'Пароль')
-    password2 = forms.CharField(label = 'Повтор пароля')
+    password1 = forms.CharField(label = 'Пароль', widget= forms.PasswordInput())
+    password2 = forms.CharField(label = 'Повтор пароля', widget = forms.PasswordInput())
     class Meta:
         model = get_user_model()
         fields = ['username', 'password1', 'password2', 'email','first_name', 'last_name']
@@ -25,6 +25,10 @@ class RegisterUserForm(forms.ModelForm):
             'email': "E-mail",
             'first_name':'Имя',
             'last_name':'Фамилия',
+        }
+        widgets = {
+            'password1': forms.PasswordInput(),
+            'password2': forms.PasswordInput(),
         }
 
     def clean_password2(self):
@@ -44,3 +48,21 @@ class RegisterUserForm(forms.ModelForm):
         if(User.objects.filter(username = username).exists()):
             raise forms.ValidationError("Пользователь с таким именем уже существует")
         return username
+    
+
+
+class ProfileUserForm(forms.ModelForm):
+    username = forms.CharField(disabled=True, label = 'Имя пользователя')
+    email = forms.CharField(disabled=True, label= 'E-mail')
+    class Meta:
+        model = get_user_model()
+        fields = ['username', 'email', 'first_name', 'last_name', 'photo']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-input'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-input'}),
+        }
+        labels = {
+            'first_name': 'Имя',
+            'last_name': 'Фамилия',
+        }
+    

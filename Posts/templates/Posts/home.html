@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block posts %}
+
+    <main>
+        <!-- Блок с постами -->
+        <aside class="posts-container">
+            <h2>Все посты</h2>
+            {% for post in posts %}
+            <div class="post">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.text }}</p>
+                <p><strong>Категории:</strong> 
+                    {% for cat in post.tags.all %}
+                        {{ cat }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                
+                <p><strong>Дата:</strong> {{ post.date_create }}</p>
+                <p><strong>Лайки:</strong> ❤️ {{ post.likes }}</p>
+                <p><strong>Автор:</strong> {{ post.author.username }}
+            </div>
+            {% empty %}
+            <p>Постов пока нет.</p>
+            {% endfor %}
+        </aside>
+    </main>
+{% endblock %}
