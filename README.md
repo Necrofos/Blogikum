@@ -9,11 +9,5 @@
 ## Стек технологий
 - Python
 - Django
-- PostgreSQL (если используется база данных)
+- PostgreSQL
 - HTML и CSS
-
-## Установка и запуск
-### 1. Клонирование репозитория
-```sh
-git clone https://github.com/yourusername/blogicum.git
-cd blogicum
